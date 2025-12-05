@@ -4,60 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poker Pilot Manager - Sistema Profissional para Clubes</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
     <meta name="description" content="O software definitivo para gestão de torneios de poker. Timer broadcast, controle de caixa e gestão de jogadores. Baixe grátis por 30 dias.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        poker: {
-                            gold: '#fbbf24', 
-                            dark: '#0f172a',
-                        }
-                    },
-                    fontFamily: {
-                        anton: ['Anton', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #020617; color: white; scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: white; scroll-behavior: smooth; }
         .font-anton { font-family: 'Anton', sans-serif; }
-        .text-gold { color: #fbbf24; }
-        .bg-gold { background-color: #fbbf24; color: black; }
-        .glass-panel {
-            background: rgba(30, 41, 59, 0.4);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .gold-text { color: #FFD700; }
+        .gold-bg { background-color: #FFD700; color: black; }
+        .gold-border { border-color: #FFD700; }
+        .hero-pattern {
+            background-image: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, rgba(15, 23, 42, 1) 70%);
         }
-        .hero-glow {
-            background: radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.15) 0%, rgba(2, 6, 23, 0) 70%);
-        }
+        /* Hide scrollbar for modal */
         .no-scroll { overflow: hidden; }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
-    "react": "https://aistudiocdn.com/react@^19.2.1",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/"
-  }
-}
-</script>
 </head>
-<body class="antialiased flex flex-col min-h-screen bg-slate-950 selection:bg-yellow-500 selection:text-black">
+<body class="antialiased flex flex-col min-h-screen">
 
     <!-- Top Bar (Socials) -->
-    <div class="bg-black/50 border-b border-white/5 py-2 text-sm text-gray-400 hidden md:block fixed w-full z-50 top-0 backdrop-blur-md">
+    <div class="bg-slate-950 border-b border-slate-800 py-2 text-sm text-gray-400 hidden md:block fixed w-full z-50 top-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <div class="flex gap-4">
                 <a href="#" class="hover:text-white transition-colors">FAQ</a>
@@ -79,21 +46,20 @@
     </div>
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-40 bg-black/80 backdrop-blur-xl border-b border-white/10 top-0 md:top-9 transition-all">
+    <nav class="fixed w-full z-40 bg-slate-900/90 backdrop-blur border-b border-slate-800 top-0 md:top-9 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 
                 <!-- Logo Area -->
-                <div class="flex items-center gap-3">
-                    <img src="logo.png" alt="Poker Pilot Logo" class="h-10 w-auto object-contain drop-shadow-[0_0_10px_rgba(251,191,36,0.3)]">
-                    <span class="font-anton text-xl tracking-wider text-white hidden sm:block">POKER PILOT</span>
+                <div class="flex items-center gap-2">
+                    <img src="logo.png" alt="Poker Pilot Logo" class="h-12 w-auto object-contain">
                 </div>
 
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#recursos" class="text-gray-300 hover:text-yellow-400 transition-colors font-medium text-sm tracking-wide uppercase">Recursos</a>
-                        <a href="#download" class="text-gray-300 hover:text-yellow-400 transition-colors font-medium text-sm tracking-wide uppercase">Download</a>
-                        <a href="https://pay.kiwify.com.br/oBl6QAm" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-6 py-2.5 rounded-full font-bold transition-all shadow-[0_0_15px_rgba(22,163,74,0.3)] hover:shadow-[0_0_25px_rgba(22,163,74,0.5)] transform hover:-translate-y-0.5 text-sm">
+                        <a href="#recursos" class="hover:text-poker-gold transition-colors font-medium">Recursos</a>
+                        <a href="#download" class="hover:text-poker-gold transition-colors font-medium">Download</a>
+                        <a href="https://pay.kiwify.com.br/oBl6QAm" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-5 py-2 rounded-lg font-bold transition-all shadow-lg shadow-green-900/20">
                             Área do Cliente / Renovar
                         </a>
                     </div>
@@ -103,151 +69,108 @@
     </nav>
 
     <!-- Hero Section -->
-    <header id="download" class="pt-40 pb-20 text-center relative hero-glow flex-1 flex flex-col justify-center overflow-hidden">
-        
-        <!-- Background Elements -->
-        <div class="absolute top-20 left-10 w-72 h-72 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
-        <div class="absolute bottom-20 right-10 w-96 h-96 bg-yellow-600/10 rounded-full blur-[100px] pointer-events-none"></div>
-
-        <div class="max-w-6xl mx-auto px-4 relative z-10">
-            <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-xs font-bold mb-8 tracking-widest uppercase animate-pulse">
-                <span class="w-2 h-2 rounded-full bg-yellow-400"></span> Versão 2024 Disponível
-            </div>
+    <header id="download" class="pt-40 pb-20 text-center relative hero-pattern flex-1 flex flex-col justify-center">
+        <div class="max-w-5xl mx-auto px-4">
+            <span class="inline-block py-1 px-3 rounded-full bg-slate-800 border border-slate-700 text-xs text-poker-gold font-bold mb-6 tracking-wide uppercase">🚀 Versão 2024 Disponível</span>
             
-            <h1 class="text-5xl md:text-8xl font-anton mb-6 leading-none tracking-wide text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 drop-shadow-lg">
-                GESTÃO DE ELITE <br/> 
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 drop-shadow-[0_0_25px_rgba(234,179,8,0.3)]">PARA O SEU CLUBE</span>
+            <h1 class="text-5xl md:text-7xl font-anton mb-6 leading-tight tracking-wide">
+                TRANSFORME SEU CLUBE EM <br/> <span class="gold-text">BROADCAST PROFISSIONAL</span>
             </h1>
             
-            <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed font-light">
-                O sistema definitivo que une cronômetro de TV profissional, gestão financeira automática e controle de jogadores. 
-                <strong class="text-white block mt-2">Comece grátis por 30 dias. Sem cartão de crédito.</strong>
+            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                O sistema completo que une cronômetro de TV, gestão financeira rigorosa e controle de jogadores. 
+                <br><strong>Comece grátis por 30 dias. Depois, renove mês a mês sem fidelidade.</strong>
             </p>
             
-            <div class="flex flex-col items-center gap-6 mb-12">
+            <div class="flex flex-col items-center gap-4 mb-8">
                 <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                    <a href="https://drive.google.com/uc?export=download&id=1OjwwdkkbdAPCBmrGiDaDkJiKvMkj4VVT" target="_blank" class="bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-300 hover:to-yellow-500 text-black px-10 py-5 rounded-2xl font-bold text-xl flex items-center gap-3 shadow-[0_0_30px_rgba(234,179,8,0.3)] transition-all hover:scale-105 hover:shadow-[0_0_50px_rgba(234,179,8,0.5)] w-full sm:w-auto justify-center group">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:animate-bounce"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <a href="https://drive.google.com/uc?export=download&id=1-E4ISzWRV_JvLKgmuIYFBNf3VmJhfuOP" target="_blank" class="gold-bg hover:bg-yellow-400 px-8 py-4 rounded-xl font-bold text-xl flex items-center gap-3 shadow-xl shadow-yellow-900/20 transition-transform hover:scale-105 w-full sm:w-auto justify-center group">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="group-hover:animate-bounce"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                         BAIXAR TESTE GRÁTIS
                     </a>
                 </div>
                 
-                <p class="text-[10px] text-gray-500 max-w-md bg-black/40 p-2 rounded border border-white/5 uppercase tracking-wide">
-                    <span class="text-yellow-500 font-bold">⚠️ Instalação:</span> Se o Windows exibir "SmartScreen", clique em <u class="text-gray-300">Mais informações</u> e <u class="text-gray-300">Executar mesmo assim</u>.
+                <p class="text-xs text-gray-500 max-w-md bg-slate-900/50 p-3 rounded border border-slate-800">
+                    <span class="text-yellow-500 font-bold">⚠️ Instalação:</span> Se o Windows exibir o aviso "SmartScreen", clique em <u>Mais informações</u> e depois em <u>Executar mesmo assim</u>. O arquivo é seguro.
                 </p>
             </div>
             
-            <div class="flex justify-center gap-8 text-gray-500 text-xs font-bold uppercase tracking-widest">
-                <span class="flex items-center gap-2"><svg class="text-blue-500" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H9v-2h6v2zm0-5H9V8h6v5z"/></svg> Windows 10/11</span>
-                <span class="flex items-center gap-2"><svg class="text-green-500" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 100% Seguro</span>
+            <div class="flex justify-center gap-6 text-gray-500 text-sm font-mono">
+                <span class="flex items-center gap-1"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H9v-2h6v2zm0-5H9V8h6v5z"/></svg> Windows 10/11</span>
+                <span class="flex items-center gap-1"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 100% Seguro</span>
             </div>
 
             <!-- Mockup Image -->
-            <div class="mt-20 relative mx-auto max-w-5xl group">
-                <div class="absolute -inset-1 bg-gradient-to-r from-yellow-600 via-orange-500 to-yellow-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-1000"></div>
-                <div class="relative bg-slate-950 border border-white/10 rounded-xl p-2 shadow-2xl overflow-hidden">
-                    <img src="preview.png" alt="Interface do Poker Pilot" class="rounded-lg w-full shadow-2xl opacity-90 hover:opacity-100 transition-opacity duration-500">
-                    
-                    <!-- Floating Badge -->
-                    <div class="absolute -top-4 -right-4 bg-gradient-to-br from-green-500 to-green-700 text-white p-4 rounded-full shadow-xl font-bold text-xs uppercase tracking-widest border-4 border-slate-900 transform rotate-12">
-                        100%<br>Offline
-                    </div>
+            <div class="mt-16 relative mx-auto max-w-4xl">
+                <div class="absolute -inset-1 bg-gradient-to-r from-yellow-600 via-orange-500 to-red-600 rounded-2xl blur opacity-30"></div>
+                <div class="relative bg-slate-950 border border-slate-800 rounded-xl p-2 shadow-2xl overflow-hidden">
+                    <img src="preview.png" alt="Interface do Poker Pilot" class="rounded-lg w-full shadow-2xl">
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Features Grid -->
-    <section id="recursos" class="py-24 bg-slate-950 relative overflow-hidden">
-        <!-- Decoration -->
-        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent"></div>
-
-        <div class="max-w-7xl mx-auto px-4 relative z-10">
-            <h2 class="text-4xl md:text-5xl font-anton text-center mb-4 text-white">FERRAMENTAS <span class="text-yellow-500">PREMIUM</span></h2>
-            <p class="text-center text-gray-500 mb-16 uppercase tracking-widest text-xs font-bold">Clique nos cartões para ver detalhes</p>
+    <section id="recursos" class="py-24 bg-slate-900 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-4xl font-anton text-center mb-16">FERRAMENTAS DE ELITE</h2>
+            <p class="text-center text-gray-400 mb-12 -mt-10">Clique nos cartões abaixo para ver detalhes</p>
             
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div onclick="openModal('timer')" class="glass-panel p-8 rounded-3xl hover:border-yellow-500/30 transition-all hover:-translate-y-2 cursor-pointer group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-500/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150"></div>
-                    
-                    <div class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center mb-6 text-yellow-400 border border-white/5 shadow-lg group-hover:text-yellow-300 group-hover:scale-110 transition-transform">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div onclick="openModal('timer')" class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-yellow-500/50 transition-all hover:-translate-y-1 cursor-pointer group">
+                    <div class="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center mb-6 text-gold-text border border-slate-700 group-hover:bg-slate-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-yellow-400 transition-colors font-anton tracking-wide">TIMER BROADCAST</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Cronômetro para TV idêntico aos grandes eventos (BSOP/WSOP). Mostra blinds, ante, média e prêmios em tempo real.</p>
-                    <div class="mt-6 flex items-center text-yellow-500 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                        Ver Detalhes <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white group-hover:text-poker-gold transition-colors">Timer Broadcast</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Cronômetro para TV idêntico aos grandes eventos. Mostra blinds, ante, média de fichas e prêmios em tempo real. Clique para saber mais.</p>
                 </div>
 
                 <!-- Feature 2 -->
-                <div onclick="openModal('finance')" class="glass-panel p-8 rounded-3xl hover:border-yellow-500/30 transition-all hover:-translate-y-2 cursor-pointer group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150"></div>
-
-                    <div class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center mb-6 text-blue-400 border border-white/5 shadow-lg group-hover:text-blue-300 group-hover:scale-110 transition-transform">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <div onclick="openModal('finance')" class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-yellow-500/50 transition-all hover:-translate-y-1 cursor-pointer group">
+                    <div class="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center mb-6 text-gold-text border border-slate-700 group-hover:bg-slate-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors font-anton tracking-wide">GESTÃO FINANCEIRA</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Controle automático de Rake, Dealer Tips e Taxas. Saiba exatamente o lucro líquido da casa ao final do dia.</p>
-                    <div class="mt-6 flex items-center text-blue-500 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                        Ver Detalhes <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white group-hover:text-poker-gold transition-colors">Gestão Financeira</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Controle automático de Rake, Caixinha do Dealer (Tips) e Taxas. Saiba exatamente o lucro da casa ao final do dia.</p>
                 </div>
 
                 <!-- Feature 3 -->
-                <div onclick="openModal('history')" class="glass-panel p-8 rounded-3xl hover:border-yellow-500/30 transition-all hover:-translate-y-2 cursor-pointer group relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-green-500/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150"></div>
-
-                    <div class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center mb-6 text-green-400 border border-white/5 shadow-lg group-hover:text-green-300 group-hover:scale-110 transition-transform">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                <div onclick="openModal('history')" class="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:border-yellow-500/50 transition-all hover:-translate-y-1 cursor-pointer group">
+                    <div class="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center mb-6 text-gold-text border border-slate-700 group-hover:bg-slate-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-white group-hover:text-green-400 transition-colors font-anton tracking-wide">HISTÓRICO & EXTRATO</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">Gera extratos detalhados em imagem (PNG) para enviar no WhatsApp. Transparência total com seus jogadores.</p>
-                    <div class="mt-6 flex items-center text-green-500 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                        Ver Detalhes <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white group-hover:text-poker-gold transition-colors">Histórico & Extrato</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Gera extratos detalhados em imagem (PNG) por jogador. Transparência total com seus clientes.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
-    <section id="precos" class="py-24 bg-black relative">
-        <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
-            <h2 class="text-4xl font-anton mb-6 text-white">PLANOS SIMPLES</h2>
-            <p class="text-gray-400 mb-12">Sem fidelidade. Cancele quando quiser.</p>
+    <section id="precos" class="py-20 bg-slate-950">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-anton mb-6">PLANOS SIMPLES</h2>
+            <p class="text-gray-400 mb-12">Comece hoje com 30 dias gratuitos. Sem compromisso.</p>
             
             <div class="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
                 <!-- Free Plan -->
-                <div class="glass-panel p-8 rounded-3xl border border-white/5 hover:bg-white/5 transition-colors">
-                    <div class="text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest">Teste Grátis</div>
-                    <div class="text-5xl font-anton text-white mb-6">R$ 0</div>
-                    <ul class="text-gray-400 text-sm space-y-3 mb-8 text-left pl-8">
-                        <li class="flex items-center gap-2"><svg class="text-green-500 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Acesso por 30 dias</li>
-                        <li class="flex items-center gap-2"><svg class="text-green-500 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Todas as funções</li>
-                        <li class="flex items-center gap-2"><svg class="text-green-500 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Suporte Básico</li>
-                    </ul>
-                    <a href="https://drive.google.com/uc?export=download&id=1OjwwdkkbdAPCBmrGiDaDkJiKvMkj4VVT" target="_blank" class="block w-full border border-gray-600 hover:border-white hover:bg-white hover:text-black text-white py-4 rounded-xl font-bold transition-all text-sm tracking-widest uppercase">
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <div class="text-lg font-bold text-white mb-2">Teste Grátis</div>
+                    <div class="text-4xl font-bold text-white mb-4">R$ 0</div>
+                    <p class="text-gray-500 text-sm mb-6">Acesso total por 30 dias</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1-E4ISzWRV_JvLKgmuIYFBNf3VmJhfuOP" target="_blank" class="block w-full border border-slate-600 hover:bg-slate-800 text-white py-3 rounded-lg font-bold transition-all">
                         BAIXAR AGORA
                     </a>
                 </div>
 
                 <!-- Pro Plan -->
-                <div class="glass-panel p-8 rounded-3xl border border-yellow-500/50 relative overflow-hidden transform scale-105 shadow-2xl">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-yellow-500"></div>
-                    <div class="absolute top-4 right-4 bg-yellow-500 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Recomendado</div>
-                    
-                    <div class="text-sm font-bold text-yellow-500 mb-2 uppercase tracking-widest mt-2">Mensal</div>
-                    <div class="text-5xl font-anton text-white mb-6">R$ 79,90</div>
-                    
-                    <ul class="text-gray-300 text-sm space-y-3 mb-8 text-left pl-8">
-                        <li class="flex items-center gap-2"><svg class="text-yellow-500 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Licença Mensal</li>
-                        <li class="flex items-center gap-2"><svg class="text-yellow-500 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Liberação Imediata</li>
-                        <li class="flex items-center gap-2"><svg class="text-yellow-500 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Suporte Prioritário</li>
-                    </ul>
-                    
-                    <a href="https://pay.kiwify.com.br/oBl6QAm" target="_blank" class="block w-full bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-300 hover:to-yellow-500 text-black py-4 rounded-xl font-bold transition-all shadow-lg text-sm tracking-widest uppercase">
+                <div class="bg-slate-900 p-6 rounded-xl border border-poker-gold relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-poker-gold text-black text-xs font-bold px-3 py-1">POPULAR</div>
+                    <div class="text-lg font-bold text-white mb-2">Renovação Mensal</div>
+                    <div class="text-4xl font-bold text-poker-gold mb-4">R$ 79,90</div>
+                    <p class="text-gray-500 text-sm mb-6">Liberação imediata via chave</p>
+                    <a href="https://pay.kiwify.com.br/oBl6QAm" target="_blank" class="block w-full bg-poker-gold hover:bg-yellow-500 text-black py-3 rounded-lg font-bold transition-all">
                         COMPRAR CHAVE
                     </a>
                 </div>
@@ -256,25 +179,28 @@
     </section>
 
     <!-- Professional Footer -->
-    <footer class="bg-slate-950 border-t border-white/5 pt-16 pb-8">
+    <footer class="bg-black border-t border-slate-800 pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-8 mb-12">
                 
                 <!-- Left: Logo & Socials -->
                 <div>
                     <div class="flex items-center gap-3 mb-6">
-                        <img src="logo.png" alt="Poker Pilot Logo" class="h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all opacity-80 hover:opacity-100">
-                        <span class="font-anton text-2xl tracking-wider text-white">POKER PILOT</span>
+                        <img src="logo.png" alt="Poker Pilot Logo" class="h-12 w-auto object-contain">
+                        <span class="font-anton text-2xl tracking-wider text-white">POKER PILOT MANAGER</span>
                     </div>
-                    <p class="text-gray-500 text-sm max-w-xs mb-6 leading-relaxed">
+                    <p class="text-gray-400 text-sm max-w-xs mb-6">
                         A solução definitiva para gerenciamento de clubes de poker. Moderno, seguro e fácil de usar.
                     </p>
                     <div class="flex gap-4">
-                        <a href="https://www.facebook.com/share/1AYr5ATfNb/?mibextid=wwXIfr" class="text-gray-500 hover:text-white transition-colors bg-white/5 p-2.5 rounded-full hover:bg-blue-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        <a href="https://www.facebook.com/share/1AYr5ATfNb/?mibextid=wwXIfr" class="text-gray-400 hover:text-white transition-colors bg-slate-800 p-2 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                         </a>
-                        <a href="https://www.instagram.com/pokerpilotmanager/" class="text-gray-500 hover:text-white transition-colors bg-white/5 p-2.5 rounded-full hover:bg-pink-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        <a href="https://www.instagram.com/pokerpilotmanager/" class="text-gray-400 hover:text-white transition-colors bg-slate-800 p-2 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors bg-slate-800 p-2 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.894-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                         </a>
                     </div>
                 </div>
@@ -282,51 +208,51 @@
                 <!-- Right: Navigation Links -->
                 <div class="flex justify-start md:justify-end gap-12 text-sm">
                     <div>
-                        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs">Produto</h4>
-                        <ul class="space-y-3 text-gray-500">
-                            <li><a href="#recursos" class="hover:text-yellow-400 transition-colors">Funcionalidades</a></li>
-                            <li><a href="#download" class="hover:text-yellow-400 transition-colors">Download</a></li>
-                            <li><a href="https://pay.kiwify.com.br/oBl6QAm" class="hover:text-yellow-400 transition-colors">Planos e Preços</a></li>
+                        <h4 class="font-bold text-white mb-4 uppercase tracking-wider">Produto</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#recursos" class="hover:text-poker-gold transition-colors">Funcionalidades</a></li>
+                            <li><a href="#download" class="hover:text-poker-gold transition-colors">Download</a></li>
+                            <li><a href="https://pay.kiwify.com.br/oBl6QAm" class="hover:text-poker-gold transition-colors">Planos e Preços</a></li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs">Empresa</h4>
-                        <ul class="space-y-3 text-gray-500">
-                            <li><a href="javascript:void(0)" onclick="openModal('empresa')" class="hover:text-yellow-400 transition-colors">Sobre Nós</a></li>
-                            <li><a href="#" class="hover:text-yellow-400 transition-colors">Termos de Uso</a></li>
-                            <li><a href="#" class="hover:text-yellow-400 transition-colors">Fale Conosco</a></li>
+                        <h4 class="font-bold text-white mb-4 uppercase tracking-wider">Empresa</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="javascript:void(0)" onclick="openModal('empresa')" class="hover:text-poker-gold transition-colors">Sobre Nós</a></li>
+                            <li><a href="#" class="hover:text-poker-gold transition-colors">Clubes Parceiros</a></li>
+                            <li><a href="#" class="hover:text-poker-gold transition-colors">Fale Conosco</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="border-t border-white/5 pt-8 text-center text-xs text-gray-700 font-mono">
+            <div class="border-t border-slate-800 pt-8 text-center text-xs text-gray-600">
                 <p>&copy; 2024 Poker Pilot Manager. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
 
     <!-- FEATURE MODAL -->
-    <div id="featureModal" class="fixed inset-0 z-[60] bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4 transition-opacity duration-300">
-        <div class="bg-slate-900 rounded-3xl border border-white/10 max-w-2xl w-full shadow-2xl relative overflow-hidden transform transition-all scale-95 opacity-0" id="modalContent">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white bg-black/50 p-2 rounded-full transition-colors z-20 border border-white/10">
+    <div id="featureModal" class="fixed inset-0 z-[60] bg-black/90 backdrop-blur-sm hidden flex items-center justify-center p-4 transition-opacity duration-300">
+        <div class="bg-slate-900 rounded-2xl border border-slate-700 max-w-2xl w-full shadow-2xl relative overflow-hidden transform transition-all scale-95 opacity-0" id="modalContent">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white bg-slate-800 p-2 rounded-full transition-colors z-10">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
             
-            <div class="p-8 md:p-10">
-                <h3 id="modalTitle" class="text-3xl font-anton text-yellow-500 mb-6 tracking-wide">TITULO AQUI</h3>
+            <div class="p-8">
+                <h3 id="modalTitle" class="text-3xl font-anton text-gold-text mb-4">TITULO AQUI</h3>
                 
                 <!-- Placeholder for feature image -->
-                <div class="bg-black/50 border border-white/5 rounded-2xl aspect-video mb-8 flex items-center justify-center overflow-hidden relative shadow-inner group" id="imageContainer">
-                     <img id="modalImage" src="" class="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-700 group-hover:scale-105" />
+                <div class="bg-slate-950 border border-slate-800 rounded-xl aspect-video mb-6 flex items-center justify-center overflow-hidden relative" id="imageContainer">
+                     <img id="modalImage" src="" class="absolute inset-0 w-full h-full object-cover z-10" />
                 </div>
 
-                <div id="modalText" class="text-gray-300 leading-relaxed space-y-4 text-sm md:text-base font-light">
+                <div id="modalText" class="text-gray-300 leading-relaxed space-y-4">
                     <!-- Content injected via JS -->
                 </div>
 
-                <div class="mt-8 text-center border-t border-white/5 pt-6">
-                    <button onclick="closeModal()" class="text-gray-500 hover:text-white text-sm font-bold uppercase tracking-widest transition-colors">Fechar Janela</button>
+                <div class="mt-8 text-center">
+                    <button onclick="closeModal()" class="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-lg font-bold transition-colors">Fechar</button>
                 </div>
             </div>
         </div>
@@ -345,53 +271,46 @@
                 title: "TIMER BROADCAST",
                 image: "preview_timer.png",
                 html: `
-                    <p class="text-lg text-white">O coração do seu torneio.</p>
-                    <p>Nosso timer foi desenhado para ser exibido em TVs de 40" a 75" ou projetores, com leitura clara de qualquer ponto da sala.</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                        <div class="bg-white/5 p-3 rounded-lg border border-white/5">
-                            <strong class="text-yellow-500 block text-xs uppercase mb-1">Visual</strong>
-                            Design Dark/Gold moderno que valoriza o ambiente do seu clube.
-                        </div>
-                        <div class="bg-white/5 p-3 rounded-lg border border-white/5">
-                            <strong class="text-yellow-500 block text-xs uppercase mb-1">Dados</strong>
-                            Blinds, Ante, Média de Fichas e Próximo Nível sempre visíveis.
-                        </div>
-                    </div>
+                    <p>O coração do seu torneio. Nosso timer foi desenhado para ser exibido em TVs de 40" a 75" ou projetores, com leitura clara de qualquer ponto da sala.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1">
+                        <li><strong class="text-white">Visual Personalizável:</strong> Cores modernas em modo Dark/Gold.</li>
+                        <li><strong class="text-white">Informações Cruciais:</strong> Blinds, Ante, Média de Fichas e Próximo Nível sempre visíveis.</li>
+                        <li><strong class="text-white">Alertas Sonoros:</strong> Avisos automáticos de troca de nível e contagem regressiva.</li>
+                    </ul>
                 `
             },
             finance: {
-                title: "GESTÃO FINANCEIRA",
+                title: "GESTÃO FINANCEIRA COMPLETA",
                 image: "preview_finance.png",
                 html: `
-                    <p class="text-lg text-white">Acabe com as planilhas de papel.</p>
-                    <p>O Poker Pilot Manager controla cada centavo que entra e sai do seu clube com precisão milimétrica.</p>
-                    <ul class="list-none space-y-2 mt-4 text-gray-400">
-                        <li class="flex gap-2"><span class="text-blue-500">✓</span> Separação de Rake Torneio vs Cash</li>
-                        <li class="flex gap-2"><span class="text-blue-500">✓</span> Controle de Caixinha do Dealer</li>
-                        <li class="flex gap-2"><span class="text-blue-500">✓</span> Relatório final de Fechamento de Caixa</li>
+                    <p>Acabe com as planilhas de papel e erros de cálculo. O Poker Pilot Manager controla cada centavo que entra e sai do seu clube.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1">
+                        <li><strong class="text-white">Separação Inteligente:</strong> Diferencie Rake do Torneio, Rake do Cash e Caixinha do Dealer automaticamente.</li>
+                        <li><strong class="text-white">Controle de Taxas:</strong> Configure taxas de administração sobre Buy-ins e Add-ons.</li>
+                        <li><strong class="text-white">Fechamento de Caixa:</strong> Relatório final mostrando "Total Arrecadado" vs "Despesas/Prêmios".</li>
                     </ul>
                 `
             },
             history: {
-                title: "HISTÓRICO & EXTRATO",
+                title: "HISTÓRICO & EXTRATO DETALHADO",
                 image: "preview_history.png",
                 html: `
-                    <p class="text-lg text-white">Transparência total.</p>
-                    <p>Gere um 'Recibo Oficial' do dia com um clique e envie para seus jogadores.</p>
-                    <ul class="list-none space-y-2 mt-4 text-gray-400">
-                        <li class="flex gap-2"><span class="text-green-500">✓</span> Extrato individual de Rebuys/Addons</li>
-                        <li class="flex gap-2"><span class="text-green-500">✓</span> Fluxo de Cash (Entrada/Saída)</li>
-                        <li class="flex gap-2"><span class="text-green-500">✓</span> Saldo final automático (Deve/Recebe)</li>
+                    <p>Transparência é a chave para fidelizar jogadores. Nosso sistema gera um 'Recibo Oficial' do dia com um clique.</p>
+                    <ul class="list-disc list-inside text-sm text-gray-400 mt-2 space-y-1">
+                        <li><strong class="text-white">Extrato Individual:</strong> Saiba exatamente quantos Rebuys, Duplos e Add-ons cada jogador fez.</li>
+                        <li><strong class="text-white">Fluxo de Cash:</strong> Registra quanto o jogador comprou e quanto devolveu em fichas.</li>
+                        <li><strong class="text-white">Saldo Final:</strong> Calcula automaticamente quem deve a casa e quem tem a receber.</li>
+                        <li><strong class="text-white">Exportação PNG:</strong> Salve o relatório como imagem e envie no grupo do WhatsApp dos jogadores.</li>
                     </ul>
                 `
             },
             empresa: {
                 title: "SOBRE A POKER PILOT",
-                image: "logo.png",
+                image: "logo.png", // Usa o logo como imagem
                 html: `
-                    <p class="text-lg text-white">Feito por quem joga.</p>
                     <p>O <strong>Poker Pilot Manager</strong> nasceu da necessidade real de donos de clubes que precisavam de um sistema simples, barato e eficiente.</p>
-                    <p class="mt-4">Desenvolvido no Brasil com tecnologia de ponta para profissionalizar o game.</p>
+                    <p>Desenvolvido por especialistas em jogos e tecnologia, nossa missão é profissionalizar o gerenciamento de torneios amadores e profissionais no Brasil.</p>
+                    <p class="text-sm mt-4">© 2024 - Desenvolvido no Brasil com ♠️ ♥️ ♣️ ♦️</p>
                 `
             }
         };
@@ -404,6 +323,7 @@
             modalText.innerHTML = data.html;
             modalImage.src = data.image;
             
+            // Ajuste especial para o modal "Empresa" para o logo não ficar esticado
             if (featureId === 'empresa') {
                 modalImage.classList.add('object-contain', 'p-8');
                 modalImage.classList.remove('object-cover');
@@ -415,6 +335,7 @@
             modal.classList.remove('hidden');
             document.body.classList.add('no-scroll');
             
+            // Animation
             setTimeout(() => {
                 modalContent.classList.remove('scale-95', 'opacity-0');
                 modalContent.classList.add('scale-100', 'opacity-100');
@@ -431,6 +352,7 @@
             }, 300);
         }
 
+        // Close on click outside
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();
         });
