@@ -61,7 +61,8 @@
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
     "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "react": "https://aistudiocdn.com/react@^19.2.1"
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "html2canvas": "https://esm.sh/html2canvas@^1.4.1"
   }
 }
 </script>
@@ -72,9 +73,9 @@
     <div class="bg-black/50 border-b border-white/5 py-2 text-xs font-bold tracking-wider text-gray-400 hidden md:block fixed w-full z-50 top-0 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <div class="flex gap-4 uppercase">
-                <a href="#" class="hover:text-poker-gold transition-colors">FAQ</a>
+                <a href="javascript:void(0)" onclick="openModal('faq')" class="hover:text-poker-gold transition-colors">FAQ</a>
                 <span class="text-white/10">|</span>
-                <a href="#" class="hover:text-poker-gold transition-colors">Suporte</a>
+                <a href="javascript:void(0)" onclick="openModal('contact')" class="hover:text-poker-gold transition-colors">Suporte</a>
             </div>
             <div class="flex gap-4 items-center">
                 <span class="mr-2 text-gray-600">SIGA-NOS:</span>
@@ -128,7 +129,7 @@
         <div class="max-w-5xl mx-auto px-4 animate-fade-up">
             <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/5 border border-white/10 text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-8 text-poker-gold shadow-xl backdrop-blur-sm">
                 <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                v1.5.4 Disponível - Windows 10/11
+                v2.0.0 Disponível - Windows 10/11
             </div>
             
             <h1 class="text-5xl md:text-8xl font-anton mb-6 leading-tight tracking-wide text-white drop-shadow-2xl">
@@ -144,7 +145,7 @@
             
             <div class="flex flex-col items-center gap-6 mb-12">
                 <div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                    <a href="https://drive.google.com/uc?export=download&id=1Ga-ESQWiAuh0H-ZU4ioo1yBlu2xTgheI" target="_blank" class="bg-gold-gradient hover:brightness-110 text-black px-10 py-5 rounded-xl font-anton text-2xl tracking-wide flex items-center gap-3 shadow-[0_0_40px_rgba(251,191,36,0.3)] transition-all transform hover:scale-105 w-full sm:w-auto justify-center group border border-yellow-300/50 relative overflow-hidden">
+                    <a href="https://drive.google.com/uc?export=download&id=1wzKgBuKQtbMjY8pN8JxqOLP8-ZnLDesp" target="_blank" class="bg-gold-gradient hover:brightness-110 text-black px-10 py-5 rounded-xl font-anton text-2xl tracking-wide flex items-center gap-3 shadow-[0_0_40px_rgba(251,191,36,0.3)] transition-all transform hover:scale-105 w-full sm:w-auto justify-center group border border-yellow-300/50 relative overflow-hidden">
                         <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 skew-y-12"></div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:animate-bounce relative z-10"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                         <span class="relative z-10">BAIXAR GRÁTIS</span>
@@ -251,7 +252,7 @@
                         <li class="flex gap-2"><span class="text-white">✓</span> Gestão de Caixa</li>
                     </ul>
 
-                    <a href="https://drive.google.com/uc?export=download&id=1Ga-ESQWiAuh0H-ZU4ioo1yBlu2xTgheI" target="_blank" class="block w-full border border-white/20 hover:bg-white hover:text-black text-white py-4 rounded-xl font-bold transition-all uppercase tracking-wide text-sm">
+                    <a href="https://drive.google.com/uc?export=download&id=1wzKgBuKQtbMjY8pN8JxqOLP8-ZnLDesp" target="_blank" class="block w-full border border-white/20 hover:bg-white hover:text-black text-white py-4 rounded-xl font-bold transition-all uppercase tracking-wide text-sm">
                         BAIXAR AGORA
                     </a>
                 </div>
@@ -317,8 +318,8 @@
                         <h4 class="font-bold text-white mb-4 uppercase tracking-widest text-xs text-poker-gold">Suporte</h4>
                         <ul class="space-y-3 text-gray-500">
                             <li><a href="javascript:void(0)" onclick="openModal('empresa')" class="hover:text-white transition-colors">Sobre Nós</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">Política de Privacidade</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors">Fale Conosco</a></li>
+                            <li><a href="javascript:void(0)" onclick="openModal('privacy')" class="hover:text-white transition-colors">Política de Privacidade</a></li>
+                            <li><a href="javascript:void(0)" onclick="openModal('contact')" class="hover:text-white transition-colors">Fale Conosco</a></li>
                         </ul>
                     </div>
                 </div>
@@ -398,7 +399,7 @@
                 `
             },
             history: {
-                title: "HISTÓRICO & EXTRATO",
+                title: "HISTÓRICO E EXTRATO",
                 image: "preview_history.png",
                 html: `
                     <p class="mb-4">Transparência é a chave para fidelizar jogadores. Nosso sistema gera um 'Recibo Oficial' do dia com um clique.</p>
@@ -423,6 +424,94 @@
                         </div>
                     </div>
                 `
+            },
+            faq: {
+                title: "PERGUNTAS FREQUENTES",
+                image: "logo.png",
+                html: `
+                    <div class="space-y-4">
+                        <div class="bg-white/5 p-3 rounded border border-white/10">
+                            <h4 class="text-poker-gold font-bold text-sm mb-1">Posso testar antes de comprar?</h4>
+                            <p class="text-gray-400 text-xs">Sim! O sistema funciona gratuitamente por 30 dias na primeira instalação.</p>
+                        </div>
+                        <div class="bg-white/5 p-3 rounded border border-white/10">
+                            <h4 class="text-poker-gold font-bold text-sm mb-1">Precisa de internet?</h4>
+                            <p class="text-gray-400 text-xs">Apenas para validar a licença na abertura. O torneio roda offline se cair a rede.</p>
+                        </div>
+                        <div class="bg-white/5 p-3 rounded border border-white/10">
+                            <h4 class="text-poker-gold font-bold text-sm mb-1">Funciona em Mac?</h4>
+                            <p class="text-gray-400 text-xs">Não, o sistema é exclusivo para Windows 10 e 11.</p>
+                        </div>
+                        <div class="bg-white/5 p-3 rounded border border-white/10">
+                            <h4 class="text-poker-gold font-bold text-sm mb-1">Como renovo a licença?</h4>
+                            <p class="text-gray-400 text-xs">Após o pagamento, você recebe a chave no seu e-mail em menos de 1 minuto.</p>
+                        </div>
+                    </div>
+                `
+            },
+            privacy: {
+                title: "POLÍTICA DE PRIVACIDADE",
+                image: "logo.png",
+                hideImage: true,
+                html: `
+                     <div class="space-y-4">
+                        <p class="text-gray-300">A sua privacidade é prioridade para o <strong>Poker Pilot Manager</strong>.</p>
+                        
+                        <div class="bg-white/5 p-4 rounded border border-white/10">
+                            <h4 class="text-poker-gold font-bold text-sm mb-2">Dados Locais (Offline-First)</h4>
+                            <p class="text-gray-400 text-sm">O Poker Pilot Manager é um software desktop. Isso significa que <strong>todos os dados</strong> do seu torneio (nomes de jogadores, valores financeiros, histórico de partidas) são salvos exclusivamente no disco rígido do seu computador.</p>
+                        </div>
+
+                        <div class="bg-white/5 p-4 rounded border border-white/10">
+                            <h4 class="text-poker-gold font-bold text-sm mb-2">Coleta de Dados</h4>
+                            <p class="text-gray-400 text-sm">Nós <strong>não</strong> coletamos, transmitimos ou armazenamos seus dados financeiros ou de clientes em nossos servidores. A única comunicação via internet é realizada momentaneamente para validar a chave de licença na inicialização do sistema.</p>
+                        </div>
+
+                        <p class="text-xs text-gray-500 mt-4">Ao utilizar nosso software, você concorda com este modelo de armazenamento local, sendo de sua responsabilidade o backup dos dados do seu computador.</p>
+                    </div>
+                `
+            },
+            contact: {
+                title: "FALE CONOSCO",
+                image: "logo.png",
+                hideImage: true,
+                html: `
+                    <form action="https://formsubmit.co/marciopokerpoa@gmail.com" method="POST" class="space-y-3 text-left">
+                        <input type="hidden" name="_next" value="https://pokerpilotmanager.com.br">
+                        <input type="hidden" name="_subject" value="Novo contato via Site Poker Pilot">
+                        <input type="hidden" name="_captcha" value="false">
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="text-[10px] uppercase font-bold text-gray-500">Nome</label>
+                                <input type="text" name="name" required class="w-full bg-black/50 border border-gray-700 rounded p-2 text-sm text-white focus:border-poker-gold outline-none">
+                            </div>
+                             <div>
+                                <label class="text-[10px] uppercase font-bold text-gray-500">País</label>
+                                <input type="text" name="country" class="w-full bg-black/50 border border-gray-700 rounded p-2 text-sm text-white focus:border-poker-gold outline-none">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                             <div>
+                                <label class="text-[10px] uppercase font-bold text-gray-500">Email</label>
+                                <input type="email" name="email" required class="w-full bg-black/50 border border-gray-700 rounded p-2 text-sm text-white focus:border-poker-gold outline-none">
+                            </div>
+                             <div>
+                                <label class="text-[10px] uppercase font-bold text-gray-500">Telefone</label>
+                                <input type="tel" name="phone" class="w-full bg-black/50 border border-gray-700 rounded p-2 text-sm text-white focus:border-poker-gold outline-none">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="text-[10px] uppercase font-bold text-gray-500">Assunto</label>
+                            <input type="text" name="subject" required class="w-full bg-black/50 border border-gray-700 rounded p-2 text-sm text-white focus:border-poker-gold outline-none">
+                        </div>
+                        <div>
+                             <label class="text-[10px] uppercase font-bold text-gray-500">Mensagem</label>
+                             <textarea name="message" rows="4" required class="w-full bg-black/50 border border-gray-700 rounded p-2 text-sm text-white focus:border-poker-gold outline-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-poker-gold text-black font-bold py-3 rounded hover:bg-yellow-400 transition-colors">ENVIAR MENSAGEM</button>
+                    </form>
+                `
             }
         };
 
@@ -434,12 +523,18 @@
             modalText.innerHTML = data.html;
             modalImage.src = data.image;
             
-            if (featureId === 'empresa') {
-                modalImage.classList.add('object-contain', 'p-8');
-                modalImage.classList.remove('object-cover');
+            // Logic to hide image container if needed (for contact form)
+            if (data.hideImage) {
+                imageContainer.style.display = 'none';
             } else {
-                modalImage.classList.remove('object-contain', 'p-8');
-                modalImage.classList.add('object-cover');
+                imageContainer.style.display = 'flex';
+                if (featureId === 'empresa' || featureId === 'faq') {
+                    modalImage.classList.add('object-contain', 'p-8');
+                    modalImage.classList.remove('object-cover');
+                } else {
+                    modalImage.classList.remove('object-contain', 'p-8');
+                    modalImage.classList.add('object-cover');
+                }
             }
             
             modal.classList.remove('hidden');
