@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://pokerpilotmanager.com.br/sitemap.xml
