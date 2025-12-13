@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth" prefix="og: https://ogp.me/ns#">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#020617"> <!-- Barra do navegador na cor do App -->
     
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="Xgtt0q_c3pxy2I4YBSHqhwZ9u1R5avomNqHAi9N6azs" />
@@ -15,7 +16,10 @@
     <meta name="description" content="Baixe o Poker Pilot Manager. O software definitivo para gestão de torneios de poker, Timer Broadcast para TV, controle de caixa, Rake e gestão de jogadores. Teste Grátis.">
     <meta name="keywords" content="poker manager, timer poker, relógio poker, gestão torneio poker, software poker clube, poker timer windows, controle caixa poker">
     <meta name="author" content="Poker Pilot Manager">
+    
+    <!-- ICONS -->
     <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="apple-touch-icon" href="logo.png"> <!-- Ícone para iPhone/iPad -->
 
     <!-- FACEBOOK / INSTAGRAM / WHATSAPP (OPEN GRAPH) - OTIMIZADO PARA ANÚNCIOS -->
     <meta property="og:type" content="website">
@@ -29,9 +33,9 @@
     <!-- Descrição Focada em Dor/Solução -->
     <meta property="og:description" content="Chega de planilhas e cronômetro de celular. Tenha Timer na TV, Controle de Caixa e Gestão de Jogadores. Baixe agora para Windows!">
     
-    <!-- IMAGEM OTIMIZADA (Correção Debugger: Tags Explícitas) -->
-    <meta property="og:image" content="https://pokerpilotmanager.com.br/preview.png">
-    <meta property="og:image:secure_url" content="https://pokerpilotmanager.com.br/preview.png">
+    <!-- IMAGEM OTIMIZADA (Com versionamento para limpar cache) -->
+    <meta property="og:image" content="https://pokerpilotmanager.com.br/preview.png?v=3">
+    <meta property="og:image:secure_url" content="https://pokerpilotmanager.com.br/preview.png?v=3">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -41,7 +45,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Poker Pilot Manager: O Software Nº1 para Clubes">
     <meta name="twitter:description" content="Timer Profissional para TV e Gestão Financeira completa. Teste Grátis.">
-    <meta name="twitter:image" content="https://pokerpilotmanager.com.br/preview.png">
+    <meta name="twitter:image" content="https://pokerpilotmanager.com.br/preview.png?v=3">
 
     <!-- Meta Pixel Code -->
     <script>
@@ -62,7 +66,7 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
 
-    <!-- Structured Data (Schema.org) - A "Etiqueta" para o Robô do Google -->
+    <!-- Structured Data 1: Software App (Schema.org) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -83,6 +87,43 @@
         "ratingCount": "120"
       },
       "featureList": "Timer Broadcast, Gestão Financeira, Controle de Rake, Histórico de Jogadores"
+    }
+    </script>
+
+    <!-- Structured Data 2: FAQ Page (Para aparecer as perguntas no Google) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Posso testar antes de comprar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim! O sistema funciona gratuitamente por 30 dias na primeira instalação. Todas as funcionalidades estão liberadas."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Precisa de internet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Apenas para validar a licença na abertura. O torneio roda offline se cair a rede, garantindo segurança total."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Funciona em Mac?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não, o sistema é desenvolvido exclusivamente para Windows 10 e Windows 11 para garantir máxima performance."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Como renovo a licença?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Após o pagamento via PIX ou Cartão, você recebe a chave no seu e-mail cadastrado em menos de 1 minuto."
+        }
+      }]
     }
     </script>
 
