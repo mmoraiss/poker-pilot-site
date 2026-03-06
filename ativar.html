@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Ativar Poker Pilot</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-black text-white flex items-center justify-center h-screen">
+
+<div class="bg-gray-900 p-10 rounded-xl text-center max-w-md">
+
+<h1 class="text-3xl font-bold mb-4">
+Poker Pilot Manager
+</h1>
+
+<p class="text-gray-400 mb-4">
+Licença para o clube
+</p>
+
+<div id="clubId" class="text-yellow-400 font-bold mb-6">
+Carregando...
+</div>
+
+<button
+onclick="createPayment()"
+class="bg-yellow-500 text-black px-6 py-3 rounded-lg font-bold">
+PAGAR COM PIX
+</button>
+
+<div id="pixArea" class="mt-6 hidden">
+<img id="qr" class="mx-auto mb-4"/>
+<textarea id="pixCode" class="w-full text-black p-2"></textarea>
+</div>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const clubId = params.get("club");
+
+document.getElementById("clubId").innerText = clubId;
+
+async function createPayment(){
+
+const res = await fetch("https://pokerpilot-license-server.vercel.app/api/create-payment",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({clubId})
+})
+
+const data = await res.json()
+
+document.getElementById("pixArea").classList.remove("hidden")
+document.getElementById("qr").src = data.qr
+document.getElementById("pixCode").value = data.pix
+
+}
+
+</script>
+
+</body>
+</html>
