@@ -3,108 +3,87 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Ativar Poker Pilot</title>
-
+<title>Ativar Licença - Poker Pilot</title>
 <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
 
+<body class="bg-[#0B1C2D] text-white flex items-center justify-center h-screen">
 
-<body class="bg-black text-white flex items-center justify-center h-screen">
+<div class="bg-[#0F2236] border border-white/10 p-10 rounded-3xl text-center max-w-md w-full shadow-2xl">
 
-<div class="bg-gray-900 p-10 rounded-xl text-center max-w-md w-full">
+<img src="logo.png" class="w-20 mx-auto mb-6"/>
 
-<h1 class="text-3xl font-bold mb-4">
+<h1 class="text-2xl font-bold mb-2">
 Poker Pilot Manager
 </h1>
 
-<p class="text-gray-400 mb-4">
-Licença para o clube
+<p class="text-slate-400 text-sm mb-6">
+Ativação de Licença
 </p>
 
-<div id="clubId" class="text-yellow-400 font-bold mb-6">
-Carregando...
+<div class="bg-black/30 rounded-xl p-4 mb-6">
+<div class="text-xs text-slate-400">
+ID DO CLUBE
 </div>
 
+<div id="clubId" class="text-yellow-400 font-bold mt-1">
+Carregando...
+</div>
+</div>
 
 <button
 onclick="createPayment()"
-class="bg-yellow-500 text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition">
+class="bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-4 rounded-xl font-bold w-full transition">
 
-PAGAR COM PIX
+GERAR PIX PARA ATIVAÇÃO
 
 </button>
 
+<div id="pixArea" class="mt-8 hidden">
 
-<div id="pixArea" class="mt-6 hidden">
-
-<img id="qr" class="mx-auto mb-4"/>
+<img id="qr" class="mx-auto mb-4 w-56"/>
 
 <textarea
 id="pixCode"
-class="w-full text-black p-2 rounded"
+class="w-full text-black p-3 rounded-lg text-xs"
 rows="4"
-readonly>
+readonly></textarea>
 
-</textarea>
+<p class="text-slate-400 text-xs mt-3">
+Escaneie o QR Code ou copie o código PIX
+</p>
 
 </div>
 
 </div>
-
-
 
 <script>
 
 const params = new URLSearchParams(window.location.search)
-const clubId = params.get("clubId")
+const clubId = params.get("club")
 
 document.getElementById("clubId").innerText = clubId
 
-
-
 async function createPayment(){
-
-try{
 
 const res = await fetch(
 "https://pokerpilot-license-server.vercel.app/api/create-payment",
 {
 method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-clubId: clubId
-})
+headers:{ "Content-Type":"application/json" },
+body:JSON.stringify({ clubId })
 }
 )
 
 const data = await res.json()
 
-console.log("Resposta API:", data)
-
-
 document.getElementById("pixArea").classList.remove("hidden")
-
 document.getElementById("qr").src = data.qr
-
 document.getElementById("pixCode").value = data.pix
-
-
-}catch(error){
-
-console.error("Erro:", error)
-
-alert("Erro ao gerar PIX")
-
-}
 
 }
 
 </script>
 
-
 </body>
-
 </html>
