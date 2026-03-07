@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 <meta charset="UTF-8">
 <title>Ativar Poker Pilot</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
+
 
 <body class="bg-black text-white flex items-center justify-center h-screen">
 
-<div class="bg-gray-900 p-10 rounded-xl text-center max-w-md">
+<div class="bg-gray-900 p-10 rounded-xl text-center max-w-md w-full">
 
 <h1 class="text-3xl font-bold mb-4">
 Poker Pilot Manager
@@ -22,45 +26,85 @@ Licença para o clube
 Carregando...
 </div>
 
+
 <button
 onclick="createPayment()"
-class="bg-yellow-500 text-black px-6 py-3 rounded-lg font-bold">
+class="bg-yellow-500 text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition">
+
 PAGAR COM PIX
+
 </button>
 
+
 <div id="pixArea" class="mt-6 hidden">
+
 <img id="qr" class="mx-auto mb-4"/>
-<textarea id="pixCode" class="w-full text-black p-2"></textarea>
+
+<textarea
+id="pixCode"
+class="w-full text-black p-2 rounded"
+rows="4"
+readonly>
+
+</textarea>
+
 </div>
 
 </div>
+
+
 
 <script>
 
-const params = new URLSearchParams(window.location.search);
-const clubId = params.get("club");
+const params = new URLSearchParams(window.location.search)
+const clubId = params.get("club")
 
-document.getElementById("clubId").innerText = clubId;
+document.getElementById("clubId").innerText = clubId
+
+
 
 async function createPayment(){
 
-const res = await fetch("https://pokerpilot-license-server.vercel.app/api/create-payment",{
+try{
+
+const res = await fetch(
+"https://pokerpilot-license-server.vercel.app/api/create-payment",
+{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
 },
-body:JSON.stringify({clubId})
+body:JSON.stringify({
+clubId: clubId
 })
+}
+)
 
 const data = await res.json()
 
+console.log("Resposta API:", data)
+
+
 document.getElementById("pixArea").classList.remove("hidden")
+
 document.getElementById("qr").src = data.qr
+
 document.getElementById("pixCode").value = data.pix
+
+
+}catch(error){
+
+console.error("Erro:", error)
+
+alert("Erro ao gerar PIX")
+
+}
 
 }
 
 </script>
 
+
 </body>
+
 </html>
